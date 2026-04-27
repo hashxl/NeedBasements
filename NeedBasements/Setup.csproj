@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>NeedBasements</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +20,9 @@
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>D:\Third_Crisis_1.1.0_Windows\Windows_1_1_Patreon\Third Crisis_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>D:\Third_Crisis_1.1.0_Windows\Windows_1_1_Patreon\Third Crisis_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
     </Reference>
   </ItemGroup>
 

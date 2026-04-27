@@ -1,6 +1,6 @@
 is_global = true
 build_property.RootNamespace = Setup
-build_property.ProjectDir = C:\Users\creep\source\repos\ThirdCrisisModding\NeedBasements\
+build_property.ProjectDir = C:\Users\creep\Documents\NeedBasements\NeedBasements\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTUseWindowsUIXamlProjections = false
