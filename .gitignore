@@ -1,3 +1,10 @@
-/TCModExample/obj
-/TCModExample/bin
+/NeedBasements/obj/*.*
+/NeedBasements/obj/Debug/netstandard2.1/*.*
+/NeedBasements/obj/Debug/netstandard2.1/references
+/NeedBasements/bin
 /.vs
+/output.lnk
+/NeedBasements/NeedBasements.csproj
+/.vs
+/.claude
+/NeedBasements/.claude

@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>D:\Third_Crisis_1.1.0_Windows\Windows_1_1_Patreon\Third Crisis_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMaker">
+      <HintPath>D:\Third_Crisis_1.1.0_Windows\Windows_1_1_Patreon\Third Crisis_Data\Managed\PlayMaker.dll</HintPath>
+    </Reference>
+    <Reference Include="spine-csharp">
+      <HintPath>D:\Third_Crisis_1.1.0_Windows\Windows_1_1_Patreon\Third Crisis_Data\Managed\spine-csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>D:\Third_Crisis_1.1.0_Windows\Windows_1_1_Patreon\Third Crisis_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>D:\Third_Crisis_1.1.0_Windows\Windows_1_1_Patreon\Third Crisis_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,10 @@
+{
+  "Name": "NeedBasements",
+  "Author": "HashXL",
+  "Version": "v0.1",
+  "Url": "https://www.google.com",
+  "UniqueIdentifier": "eb15696c-3058-45a1-8969-cefa9533bbf2",
+  "PathToDLL": "TCModExample.dll",
+  "DialoguePaths": [],
+  "CustomEquipment": []
+}
