@@ -1,8 +1,10 @@
-namespace NeedBasements
+using System.Collections.Generic;
+
+namespace NeedBasements.Domain.Substances
 {
-    internal static class AllSubstances
+    internal class SubstanceCatalog
     {
-        internal static readonly SubstanceDef Cigar = new SubstanceDef
+        private static readonly Substance Cigar = new Substance
         {
             ItemName        = "Cigar",
             ItemKey         = "cigar",
@@ -40,7 +42,7 @@ namespace NeedBasements
         };
 
         // +4/use — habitual, quick fix; satisfies for less time than a cigar
-        internal static readonly SubstanceDef Cigarette = new SubstanceDef
+        private static readonly Substance Cigarette = new Substance
         {
             ItemName        = "Cigarette",
             ItemKey         = "cigarette",
@@ -68,62 +70,34 @@ namespace NeedBasements
             }
         };
 
-        // +6/use — social, escapist; satisfaction lasts longer but withdrawal is severe
-        // internal static readonly SubstanceDef Beer = new SubstanceDef
-        // {
-        //     ItemName        = "Suspicious Beer",
-        //     ItemKey         = "beer",
-        //     ShopCost        = 40,
-        //     AddictionGain   = 6,
-        //     SatisfactionMax = 120f,
-        //     SatisfactionMin = 20f,
-        //     NegativeMild    = "My head's getting heavy... but it helps me forget.",
-        //     NegativeSevere  = "*slurs* Just one more won't kill me... probably.",
-        //     PurchaseReaction = "Just to relax a little.",
-        //     Stages = new[]
-        //     {
-        //         new ProgressionStage(10,  "*takes a sip* ...could get used to this.",                                    "Think"),
-        //         new ProgressionStage(20,  "Not bad. Takes the edge off nicely.",                                         "Think"),
-        //         new ProgressionStage(40,  "A couple after a long day never hurt anyone.",                                "Happy"),
-        //         new ProgressionStage(60,  "I think better with a drink. Helps me relax.",                               "Happy"),
-        //         new ProgressionStage(80,  "I drink to feel normal now. Is that bad?",                                   "Troubled"),
-        //         new ProgressionStage(100, "Hard day. Need a drink. ...I have a lot of hard days.",                       "Troubled"),
-        //         new ProgressionStage(120, "I promised myself I'd slow down. I haven't.",                                 "Sad"),
-        //         new ProgressionStage(140, "My hands won't stop trembling unless I have something to drink.",             "Distressed"),
-        //         new ProgressionStage(160, "*drinks straight from the bottle* Faster this way.",                          "Drunk"),
-        //         new ProgressionStage(180, "I don't get drunk anymore. I just get... normal.",                            "Drunk"),
-        //         new ProgressionStage(int.MaxValue, "This is the only thing that makes the world quiet.",                "Seductive_4"),
-        //     }
-        // };
-
-        // // +12/use — mellow to paranoid; long high but strong grip
-        // internal static readonly SubstanceDef Cannabis = new SubstanceDef
-        // {
-        //     ItemName        = "Cannabis",
-        //     ItemKey         = "weed",
-        //     ShopCost        = 80,
-        //     AddictionGain   = 12,
-        //     SatisfactionMax = 150f,
-        //     SatisfactionMin = 25f,
-        //     NegativeMild    = "Getting a little fuzzy... this is fine.",
-        //     NegativeSevere  = "*paranoid* Everything feels wrong when I'm not high. When does it kick in?",
-        //     PurchaseReaction = "I've always been... curious.",
-        //     Stages = new[]
-        //     {
-        //         new ProgressionStage(15,  "That's... different. Kind of nice, actually.",                                "Think"),
-        //         new ProgressionStage(30,  "*giggles* Okay. I see why people like this.",                                 "Happy"),
-        //         new ProgressionStage(60,  "Everything's a bit softer. I like it here.",                                 "Happy"),
-        //         new ProgressionStage(90,  "I function better when I'm high. That's just... true.",                      "Troubled"),
-        //         new ProgressionStage(120, "I used to worry about things. Now I worry about running out.",               "Troubled"),
-        //         new ProgressionStage(150, "I can't sleep without it. Can barely sleep with it either.",                  "Sad"),
-        //         new ProgressionStage(170, "*hands shake* The world is too loud when I'm sober.",                        "Distressed"),
-        //         new ProgressionStage(190, "I don't feel anything anymore unless I smoke first.",                         "Seductive_4"),
-        //         new ProgressionStage(int.MaxValue, "I can't tell if I'm high or if this is just... me now.",            "Seductive_4"),
-        //     }
-        // };
+        // +12/use — mellow to paranoid; long high but strong grip
+        private static readonly Substance Cannabis = new Substance
+        {
+            ItemName = "Cannabis",
+            ItemKey  = "cannabis",
+            ShopCost = 80,
+            AddictionGain   = 12,
+            SatisfactionMax = 150f,
+            SatisfactionMin = 25f,
+            NegativeMild    = "Getting a little fuzzy... this is fine.",
+            NegativeSevere  = "*paranoid* Everything feels wrong when I'm not high. When does it kick in?",
+            PurchaseReaction = "I've always been... curious.",
+            Stages = new[]
+            {
+                new ProgressionStage(15,  "That's... different. Kind of nice, actually.",                                "Think"),
+                new ProgressionStage(30,  "*giggles* Okay. I see why people like this.",                                 "Happy"),
+                new ProgressionStage(60,  "Everything's a bit softer. I like it here.",                                 "Happy"),
+                new ProgressionStage(90,  "I function better when I'm high. That's just... true.",                      "Troubled"),
+                new ProgressionStage(120, "I used to worry about things. Now I worry about running out.",               "Troubled"),
+                new ProgressionStage(150, "I can't sleep without it. Can barely sleep with it either.",                  "Sad"),
+                new ProgressionStage(170, "*hands shake* The world is too loud when I'm sober.",                        "Distressed"),
+                new ProgressionStage(190, "I don't feel anything anymore unless I smoke first.",                         "Seductive_4"),
+                new ProgressionStage(int.MaxValue, "I can't tell if I'm high or if this is just... me now.",            "Seductive_4"),
+            }
+        };
 
         // +22/use — intense euphoria to desperate crash; fastest addiction spiral
-        internal static readonly SubstanceDef Pills = new SubstanceDef
+        private static readonly Substance Pills = new Substance
         {
             ItemName        = "Pills",
             ItemKey         = "pills",
@@ -134,21 +108,35 @@ namespace NeedBasements
             NegativeMild    = "*grinding teeth* The crash is getting worse every time.",
             NegativeSevere  = "*shaking violently* I need another one. Now. Please.",
             PurchaseReaction = "Everyone uses these. It's fine.",
+            HangoverLine    = "*winces* God, my head is pounding... I shouldn't have taken those.",
+            HangoverEmotion = "Distressed",
             Stages = new[]
             {
                 new ProgressionStage(22,  "*swallows* Okay. Let's see what the fuss is about.",                         "Think"),
                 new ProgressionStage(44,  "Oh. Oh, that's... that's something.",                                        "Happy"),
                 new ProgressionStage(66,  "Everything is sharp. I feel invincible.",                                    "Happy"),
-                new ProgressionStage(88,  "I need more to get the same feeling. Fine. I'll take two.",                  "Troubled"),
-                new ProgressionStage(110, "The crash is brutal. I just take another before it hits.",                   "Troubled"),
+                new ProgressionStage(88,  "I need more to get the same feeling. Fine. I'll take two.",                  "Seductive_1"),
+                new ProgressionStage(110, "The crash is brutal. I just take another before it hits.",                   "Seductive_2"),
                 new ProgressionStage(132, "I can't remember the last time I felt okay without one.",                    "Sad"),
-                new ProgressionStage(154, "*hands shake* I need to find more. I need them now.",                        "Distressed"),
+                new ProgressionStage(154, "*hands shake* I need to find more. I need them now.",                        "Seductive_4"),
                 new ProgressionStage(176, "My heart is pounding. It does that all the time now.",                       "Angry"),
                 new ProgressionStage(198, "*barely coherent* Just... one more. Hold it together.",                      "Seductive_4"),
                 new ProgressionStage(int.MaxValue, "I don't know who I was before these. I don't want to know.",        "Seductive_4"),
             }
         };
 
-        internal static readonly SubstanceDef[] All = { Cigar, Cigarette, Pills };
+        private readonly Substance[] _all = { Cigar, Cannabis, Cigarette, Pills };
+
+        internal IReadOnlyList<Substance> All => _all;
+
+        internal Substance FindByItemName(string itemName)
+        {
+            foreach (var substance in _all)
+            {
+                if (substance.ItemName == itemName)
+                    return substance;
+            }
+            return null;
+        }
     }
 }

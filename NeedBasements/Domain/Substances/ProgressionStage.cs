@@ -1,4 +1,4 @@
-namespace NeedBasements
+namespace NeedBasements.Domain.Substances
 {
     internal readonly struct ProgressionStage
     {

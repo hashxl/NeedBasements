@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NeedBasements")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a7424ec1bc902fe2694003cce87f3294d3eccf0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+682669403693792d7fa61fbfb2b387f43abe85d6")]
 [assembly: System.Reflection.AssemblyProductAttribute("NeedBasements")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NeedBasements")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
