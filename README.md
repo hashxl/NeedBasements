@@ -13,7 +13,7 @@ The mod creates a dynamic tension between mechanical advantage (combat buffs) an
 
 ## Seller Location
 
-<iframe src="https://player.vimeo.com/video/1188475585" width="600" height="338" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+[![Watch on Vimeo](https://img.shields.io/badge/Watch%20Video-Vimeo-blue?style=for-the-badge)](https://vimeo.com/1188475585)
 
 ## Core Systems
 
