@@ -13,6 +13,8 @@ namespace NeedBasements.Domain.Addiction
         private int _purchaseCount;
         private bool _hasMetVendor;
         private bool _hasSeenPriceHike;
+        private int _relapsCount;
+        private Substance _lastSubstance;
 
         internal Substance ActiveSubstance => _activeSubstance;
         internal int PurchaseCount => _purchaseCount;
@@ -20,6 +22,7 @@ namespace NeedBasements.Domain.Addiction
         internal void MarkVendorMet() => _hasMetVendor = true;
         internal bool HasSeenPriceHike => _hasSeenPriceHike;
         internal void MarkPriceHikeSeen() => _hasSeenPriceHike = true;
+        internal int RelapsCount => _relapsCount;
 
         // Returns true exactly once per craving window.
         internal bool TickCraving(float deltaTime)
@@ -35,7 +38,15 @@ namespace NeedBasements.Domain.Addiction
 
         internal void Consume(Substance substance)
         {
+            // Check for relapse: consuming after abstinence (was consuming something else or nothing).
+            if (_lastSubstance != null && _lastSubstance.ItemKey != substance.ItemKey)
+            {
+                // Switched substances after abstinence — increment relaps count.
+                _relapsCount++;
+            }
+
             _activeSubstance = substance;
+            _lastSubstance = substance;
             _cravingTimer = 0f;
         }
 
@@ -46,6 +57,18 @@ namespace NeedBasements.Domain.Addiction
             _activeSubstance = null;
             _cravingTimer = 0f;
         }
+
+        // Get the addiction multiplier based on relaps count (2x, 3x, capped).
+        internal float GetAddictionMultiplier() =>
+            _relapsCount switch
+            {
+                0 => 1f,
+                1 => 2f,
+                _ => 3f  
+            };
+
+        // Reset relaps count when addiction drops to 0 (successful abstinence).
+        internal void ResetRelapsCount() => _relapsCount = 0;
 
         internal void RegisterPurchase() => _purchaseCount++;
 

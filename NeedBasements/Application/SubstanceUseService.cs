@@ -38,7 +38,16 @@ namespace NeedBasements.Application
             }
 
             var stat = jenna.GetStat(ModConstants.StatAddiction);
-            stat.BaseValue += substance.AddictionGain;
+            float addictionMultiplier = _state.GetAddictionMultiplier();
+            int addictionGain = (int)(substance.AddictionGain * addictionMultiplier);
+            stat.BaseValue += addictionGain;
+
+            // Reset relaps if addiction drops to 0 (successful abstinence cycle).
+            if (stat.BaseValue <= 0)
+            {
+                stat.BaseValue = 0;
+                _state.ResetRelapsCount();
+            }
 
             float addictionPercent = stat.BaseValue / AddictionStatFactory.MaxValue;
             float satisfactionDuration = substance.SatisfactionAt(addictionPercent);
@@ -64,11 +73,24 @@ namespace NeedBasements.Application
             if (substance.CombatModifiers == null || substance.CombatModifiers.Length == 0)
                 return;
 
+            var stat = jenna.GetStat(ModConstants.StatAddiction);
+            float addictionPercent = stat?.BaseValue / AddictionStatFactory.MaxValue ?? 0f;
+
+            // Combat modifier multiplier scales with addiction: 2x at medium, 3x at high
+            float modifierMultiplier = 1f;
+            if (addictionPercent >= 0.66f)      // high addiction (66%+)
+                modifierMultiplier = 3f;
+            else if (addictionPercent >= 0.33f) // medium addiction (33%+)
+                modifierMultiplier = 2f;
+
             var lines = new System.Collections.Generic.List<string>();
             foreach (var mod in substance.CombatModifiers)
             {
-                string prefix = mod.Amount > 0 ? "+" : "";
-                lines.Add($"{prefix}{mod.Amount} {StatDisplayName(mod.StatID)}");
+                int scaledAmount = (int)(mod.Amount * modifierMultiplier);
+                string prefix = scaledAmount > 0 ? "+" : "";
+                string effect = scaledAmount > 0 ? "BUFF" : "DEBUFF";
+                string multiplierNote = modifierMultiplier > 1f ? $" (x{modifierMultiplier})" : "";
+                lines.Add($"[{effect}] {prefix}{scaledAmount} {StatDisplayName(mod.StatID)}{multiplierNote}");
             }
 
             string modifiersText = string.Join(" | ", lines);

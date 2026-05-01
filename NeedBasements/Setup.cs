@@ -66,7 +66,7 @@ namespace NeedBasements
 
             // Remove vendor NPC if present
             _vendorService.RemoveVendorNpc();
-            Notification.Create("Mod uninstalled successfully : NeedBasements", Color.red, 3f);
+            Notification.Create("Mod uninstalled successfully : NeedBasements", Color.green, 3f);
             Debug.Log("NeedBasements cleanup complete");
       
         }
