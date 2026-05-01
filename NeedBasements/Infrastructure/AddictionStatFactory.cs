@@ -29,7 +29,11 @@ namespace NeedBasements.Infrastructure
             if (character == null) return;
             var stat = character.GetStat(ModConstants.StatAddiction);
             if (stat != null)
-                stat.BaseValue = 0;
+            {
+                stat.RemoveFromCharacter();
+                // Also remove from global Stat registry
+                Stat.All.Remove(ModConstants.StatAddiction);
+            }
         }
     }
 }

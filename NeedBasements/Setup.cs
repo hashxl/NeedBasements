@@ -4,6 +4,7 @@ using Asuna.CharManagement;
 using Asuna.Dialogues;
 using Asuna.Items;
 using Modding;
+using UnityEngine.SceneManagement;
 using NeedBasements.Application;
 using NeedBasements.Domain.Addiction;
 using NeedBasements.Domain.Substances;
@@ -45,6 +46,14 @@ namespace NeedBasements
             PleasureEffect.SubscribeToRemoved(jenna, _hangoverService.OnPleasureEnded);
 
             Item.OnItemUsed.AddListener(_substanceUseService.OnItemUsed);
+
+            // Spawn vendor immediately if already in Carceburg
+            if (SceneManager.GetActiveScene().name == ModConstants.LevelToSell)
+                _vendorService.OnLevelChanged("", ModConstants.LevelToSell);
+
+
+            Notification.Create("Mod installed successfully : NeedBasements", Color.green, 3f);
+          
         }
 
         public void OnModUnLoaded()
@@ -54,6 +63,18 @@ namespace NeedBasements
             Item.OnItemUsed.RemoveListener(_substanceUseService.OnItemUsed);
 
             var jenna = Character.Get(ModConstants.CharacterJenna);
+
+            // Remove all substance items from Jenna's inventory
+            foreach (var substance in _catalog.All)
+            {
+                // Keep removing while items exist
+                while (true)
+                {
+                    var item = jenna.Inventory.GetItemByName(substance.ItemName);
+                    if (item == null) break;
+                    jenna.Inventory.Remove(item);
+                }
+            }
 
             // Remove addiction stat
             AddictionStatFactory.UnregisterFrom(jenna);
@@ -68,7 +89,7 @@ namespace NeedBasements
             _vendorService.RemoveVendorNpc();
             Notification.Create("Mod uninstalled successfully : NeedBasements", Color.green, 3f);
             Debug.Log("NeedBasements cleanup complete");
-      
+
         }
 
         public void OnFrame(float deltaTime) => _cravingService.Tick(deltaTime);

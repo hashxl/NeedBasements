@@ -21,8 +21,32 @@ namespace NeedBasements.Infrastructure.LimbEffects
 
         internal static void UnregisterAll(SubstanceCatalog catalog)
         {
-            foreach (var substance in catalog.All)
-                LimbEffect.All.Remove(substance.LimbEffectID);
+            var jenna = Character.Get("Jenna");
+
+            // Remove any active pleasure effects from Jenna
+            if (jenna != null)
+            {
+                var head = jenna.Limbs.GetLimb(LimbType.Head);
+                if (head != null)
+                {
+                    foreach (var substance in catalog.All)
+                    {
+                        var effect = LimbEffect.Get(substance.LimbEffectID);
+                        if (effect != null && head.HasEffect(effect))
+                            head.RemoveEffect(effect);
+                    }
+                }
+            }
+
+            // Remove only the mod's pleasure effects from global registry
+            var keysToRemove = new System.Collections.Generic.List<string>();
+            foreach (var key in LimbEffect.All.Keys)
+            {
+                if (key.StartsWith(ModConstants.PleasureLimbEffectPrefix))
+                    keysToRemove.Add(key);
+            }
+            foreach (var key in keysToRemove)
+                LimbEffect.All.Remove(key);
         }
 
         private static LimbEffect Register(Substance substance, Sprite icon, float decayTime)
@@ -33,7 +57,7 @@ namespace NeedBasements.Infrastructure.LimbEffects
 
             var effect = ScriptableObject.CreateInstance<LimbEffect>();
             effect.name              = id;
-            effect.DisplayName       = "Pleasure (" + substance.ItemName + ")";
+            effect.DisplayName       = "Pleasure";
             effect.DisplaySprite     = icon;
             effect.EffectType        = LimbEffectType.Mental;
             effect.CanDecay          = true;
