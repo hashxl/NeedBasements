@@ -6,6 +6,8 @@ namespace NeedBasements.Domain.Substances
     {
         internal string             ItemName;
         internal string             ItemKey;
+        internal string             LimbEffectID;
+        internal CombatModifier[]   CombatModifiers;
         internal int                ShopCost;
         internal int                AddictionGain;
         internal float              SatisfactionMax;

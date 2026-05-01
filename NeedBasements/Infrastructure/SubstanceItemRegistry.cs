@@ -19,5 +19,11 @@ namespace NeedBasements.Infrastructure
                 Item.All.Add(substance.ItemKey, consumable);
             }
         }
+
+        internal static void UnregisterAll(SubstanceCatalog catalog)
+        {
+            foreach (var substance in catalog.All)
+                Item.All.Remove(substance.ItemKey);
+        }
     }
 }

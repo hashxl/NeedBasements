@@ -5,7 +5,7 @@ namespace NeedBasements.Infrastructure
 {
     internal static class AddictionStatFactory
     {
-        internal const float MaxValue = 900f;
+        internal const float MaxValue = 200f;
 
         internal static void RegisterFor(Character character)
         {
@@ -22,6 +22,14 @@ namespace NeedBasements.Infrastructure
             stat.Initialize();
             stat.AddToCharacter(character);
             character.GetStat(stat.ID).BaseValue = 0;
+        }
+
+        internal static void UnregisterFrom(Character character)
+        {
+            if (character == null) return;
+            var stat = character.GetStat(ModConstants.StatAddiction);
+            if (stat != null)
+                stat.BaseValue = 0;
         }
     }
 }

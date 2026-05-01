@@ -44,9 +44,10 @@ namespace NeedBasements.Application
             float satisfactionDuration = substance.SatisfactionAt(addictionPercent);
 
             _state.Consume(substance);
-            PleasureEffect.ApplyTo(jenna, satisfactionDuration);
+            PleasureEffect.ApplyTo(jenna, substance, satisfactionDuration);
 
             ShowProgressionLine(jenna, substance, (int)stat.BaseValue);
+            ShowCombatModifiers(jenna, substance);
             ShowNegativeReaction(jenna, substance, addictionPercent);
 
             jenna.Inventory.Remove(item);
@@ -57,6 +58,33 @@ namespace NeedBasements.Application
             var stage = substance.StageFor(level);
             Item.GenerateErrorDialogue(jenna, stage.Text, stage.Emotion);
         }
+
+        private static void ShowCombatModifiers(Character jenna, Substance substance)
+        {
+            if (substance.CombatModifiers == null || substance.CombatModifiers.Length == 0)
+                return;
+
+            var lines = new System.Collections.Generic.List<string>();
+            foreach (var mod in substance.CombatModifiers)
+            {
+                string prefix = mod.Amount > 0 ? "+" : "";
+                lines.Add($"{prefix}{mod.Amount} {StatDisplayName(mod.StatID)}");
+            }
+
+            string modifiersText = string.Join(" | ", lines);
+            Item.GenerateErrorDialogue(jenna, modifiersText, "Happy");
+        }
+
+        private static string StatDisplayName(string statId) => statId switch
+        {
+            ModConstants.StatLustDefense    => "Lust Defense",
+            ModConstants.StatLustPower      => "Lust Power",
+            ModConstants.StatPhysicalPower  => "Physical Power",
+            ModConstants.StatPhysicalDef    => "Physical Defense",
+            ModConstants.StatEnergy         => "Energy",
+            ModConstants.StatMovementSpeed  => "Movement Speed",
+            _ => statId
+        };
 
         private static void ShowNegativeReaction(Character jenna, Substance substance, float addictionPercent)
         {

@@ -10,8 +10,23 @@ namespace NeedBasements
         internal const string EffectSpritePath   = "assets\\sprites\\effects\\base.png";
 
 
-        // Custom mental LimbEffects registered at mod load
-        internal const string PleasureLimbEffectID       = "LmbEffect_SubstancePleasure";
+        // Custom mental LimbEffects registered at mod load.
+        // One pleasure effect per substance — each carries its own combat StatModifiers.
+        // The shared prefix lets us detect "any substance pleasure is active" without
+        // hard-coding the four IDs in every check.
+        internal const string PleasureLimbEffectPrefix    = "LmbEffect_SubstancePleasure_";
+        internal const string CigarPleasureLimbEffectID     = "LmbEffect_SubstancePleasure_Cigar";
+        internal const string CigarettePleasureLimbEffectID = "LmbEffect_SubstancePleasure_Cigarette";
+        internal const string CannabisPleasureLimbEffectID  = "LmbEffect_SubstancePleasure_Cannabis";
+        internal const string PillsPleasureLimbEffectID     = "LmbEffect_SubstancePleasure_Pills";
+
+        // Built-in stat IDs used as targets for the substance combat modifiers.
+        internal const string StatLustDefense    = "stat_lust_defense";
+        internal const string StatLustPower      = "stat_lust_power";
+        internal const string StatPhysicalPower  = "stat_physical_power";
+        internal const string StatPhysicalDef    = "stat_physical_defense";
+        internal const string StatEnergy         = "stat_energy";
+        internal const string StatMovementSpeed  = "stat_speed";
 
         // Built-in game effect (note: prefix is "LimbEffect_", not "LmbEffect_")
         internal const string GropedLimbEffectID         = "LimbEffect_Groped";

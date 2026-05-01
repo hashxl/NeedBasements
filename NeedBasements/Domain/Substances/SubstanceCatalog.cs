@@ -8,10 +8,16 @@ namespace NeedBasements.Domain.Substances
         {
             ItemName        = "Cigar",
             ItemKey         = "cigar",
+            LimbEffectID    = ModConstants.CigarPleasureLimbEffectID,
+            CombatModifiers = new[]
+            {
+                new CombatModifier(ModConstants.StatLustDefense,   +4),
+                new CombatModifier(ModConstants.StatMovementSpeed, -2),
+            },
             ShopCost        = 50,
             AddictionGain   = 2,
-            SatisfactionMax = 90f,
-            SatisfactionMin = 15f,
+            SatisfactionMax = 210f,
+            SatisfactionMin = 35f,
             NegativeMild    = "*cough* ...still worth it.",
             NegativeSevere  = "*heavy cough* My lungs can't keep taking this...",
             PurchaseReaction = "Just to try it, right?",
@@ -46,10 +52,16 @@ namespace NeedBasements.Domain.Substances
         {
             ItemName        = "Cigarette",
             ItemKey         = "cigarette",
+            LimbEffectID    = ModConstants.CigarettePleasureLimbEffectID,
+            CombatModifiers = new[]
+            {
+                new CombatModifier(ModConstants.StatLustPower,     +4),
+                new CombatModifier(ModConstants.StatMovementSpeed, -2),
+            },
             ShopCost        = 30,
             AddictionGain   = 4,
-            SatisfactionMax = 70f,
-            SatisfactionMin = 10f,
+            SatisfactionMax = 210f,
+            SatisfactionMin = 30f,
             NegativeMild    = "*cough* This smoke is getting to me.",
             NegativeSevere  = "*coughs hard* I can barely breathe... doesn't matter.",
             PurchaseReaction = "I can quit whenever I want.",
@@ -75,10 +87,16 @@ namespace NeedBasements.Domain.Substances
         {
             ItemName = "Cannabis",
             ItemKey  = "cannabis",
+            LimbEffectID    = ModConstants.CannabisPleasureLimbEffectID,
+            CombatModifiers = new[]
+            {
+                new CombatModifier(ModConstants.StatEnergy,      +3),
+                new CombatModifier(ModConstants.StatLustDefense, -4),
+            },
             ShopCost = 80,
             AddictionGain   = 12,
-            SatisfactionMax = 150f,
-            SatisfactionMin = 25f,
+            SatisfactionMax = 210f,
+            SatisfactionMin = 35f,
             NegativeMild    = "Getting a little fuzzy... this is fine.",
             NegativeSevere  = "*paranoid* Everything feels wrong when I'm not high. When does it kick in?",
             PurchaseReaction = "I've always been... curious.",
@@ -101,10 +119,16 @@ namespace NeedBasements.Domain.Substances
         {
             ItemName        = "Pills",
             ItemKey         = "pills",
+            LimbEffectID    = ModConstants.PillsPleasureLimbEffectID,
+            CombatModifiers = new[]
+            {
+                new CombatModifier(ModConstants.StatPhysicalPower, +8),
+                new CombatModifier(ModConstants.StatPhysicalDef,   -4),
+            },
             ShopCost        = 150,
             AddictionGain   = 22,
-            SatisfactionMax = 45f,
-            SatisfactionMin = 5f,
+            SatisfactionMax = 210f,
+            SatisfactionMin = 25f,
             NegativeMild    = "*grinding teeth* The crash is getting worse every time.",
             NegativeSevere  = "*shaking violently* I need another one. Now. Please.",
             PurchaseReaction = "Everyone uses these. It's fine.",

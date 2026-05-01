@@ -17,6 +17,7 @@ namespace NeedBasements.Application
         private readonly AddictionState _state;
         private readonly SubstanceCatalog _catalog;
         private readonly ModManifest _manifest;
+        private GameObject _vendorNpc;
 
         internal VendorService(AddictionState state, SubstanceCatalog catalog, ModManifest manifest)
         {
@@ -34,22 +35,31 @@ namespace NeedBasements.Application
             }
         }
 
+        internal void RemoveVendorNpc()
+        {
+            if (_vendorNpc != null)
+                Object.Destroy(_vendorNpc);
+        }
+
         private void SpawnVendorNpc()
         {
-            var npc = new GameObject();
-            npc.transform.position = new Vector3(16.73f, -9.30f);
+            RemoveVendorNpc();
 
-            var collider = npc.AddComponent<BoxCollider>();
+            _vendorNpc = new GameObject();
+            _vendorNpc.transform.position = new Vector3(16.73f, -9.30f);
+
+            var collider = _vendorNpc.AddComponent<BoxCollider>();
             collider.size = new Vector3(0.5f, 1f);
 
             var spriteObj = new GameObject();
-            spriteObj.transform.position = new Vector3(16.03f, -10f);
+            spriteObj.transform.SetParent(_vendorNpc.transform, worldPositionStays: false);
+            spriteObj.transform.localPosition = new Vector3(-0.7f, -0.7f);
 
             var spriteRenderer = spriteObj.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = _manifest.SpriteResolver.ResolveAsResource(ModConstants.SpritePath);
             spriteRenderer.transform.localScale = new Vector3(1f, 1f);
 
-            var interactable = npc.AddComponent<Interactable>();
+            var interactable = _vendorNpc.AddComponent<Interactable>();
             interactable.TypeOfInteraction = InteractionType.Talk;
 
             var seller = Character.Get(ModConstants.CharacterVendorMan);
