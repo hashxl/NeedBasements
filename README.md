@@ -2,16 +2,15 @@
 
 A substance addiction mod for **Third Crisis** that introduces a progressive system of dependency and consequence. A mysterious vendor in Carceburg offers substances that provide immediate benefits in combat — but at a growing cost. Each use deepens addiction, triggers cravings more frequently, and shifts Jenna's dialogue as she struggles with her choices.
 
-![NeedBasements Logo](NeedBasements/public/ImageLogo.png)
-
-
-
 ## Overview
 
 The mod creates a dynamic tension between mechanical advantage (combat buffs) and narrative/mechanical cost (addiction, relapse penalties, escalating debuffs). Substances are not just story flavor — they alter combat stats, but the effect grows weaker and more unstable as addiction rises.
 
 
-## Seller Location
+## Finding the Vendor
+
+The vendor (a mysterious dealer) appears in **Carceburg** once you enter the area. His greeting and product availability change based on your addiction level and purchase history — he even raises prices as Jenna becomes a more loyal (desperate) customer.
+
 
 [![Watch on Vimeo](https://img.shields.io/badge/Watch%20Video-Vimeo-blue?style=for-the-badge)](https://vimeo.com/1188475585)
 
@@ -60,12 +59,6 @@ This mechanic rewards commitment to abstinence but punishes yo-yo cycles.
 
 The mod is not about "winning" via substances — it's about **choice and consequence**. Substances offer real mechanical benefits, but at the cost of building dependency. The escalating relapse penalties and addiction-scaled modifiers create a curve where short-term power comes with long-term risk. Dialogue progression mirrors this mechanical journey, giving narrative weight to the spiral.
 
-## Finding the Vendor
-
-The vendor (a mysterious dealer) appears in **Carceburg** once you enter the area. His greeting and product availability change based on your addiction level and purchase history — he even raises prices as Jenna becomes a more loyal (desperate) customer.
-
-Reference image link (Google Drive viewer):
-- `https://drive.google.com/file/d/1MTDkmVVITz9Fy1sgxZUdsZG5DeIIeRlt/view?usp=sharing`
 
 ## Credits
 
