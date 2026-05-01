@@ -42,6 +42,9 @@ namespace NeedBasements.Application
             int addictionGain = (int)(substance.AddictionGain * addictionMultiplier);
             stat.BaseValue += addictionGain;
 
+            // Track max addiction reached for relapse detection
+            _state.UpdateMaxAddiction(stat.BaseValue);
+
             // Reset relaps if addiction drops to 0 (successful abstinence cycle).
             if (stat.BaseValue <= 0)
             {
